@@ -82,6 +82,13 @@ const getTodo = {
   },
 };
 
+const getAllTodos = {
+  user_id: {
+    notEmpty: {
+      errorMessage: "user_id is required.",
+    },
+  },
+};
 
 const createTodoValidation = () => {
   return checkSchema(createTodo);
@@ -99,4 +106,8 @@ const getTodoValidation = () => {
   return checkSchema(getTodo);
 };
 
-export { createTodoValidation, editTodoValidation, deleteTodoValidation, getTodoValidation };
+const getAllTodosValidation = () => {
+  return checkSchema(getAllTodos);
+};
+
+export { createTodoValidation, editTodoValidation, deleteTodoValidation, getTodoValidation, getAllTodosValidation };
