@@ -109,3 +109,25 @@ export const getTodo = async (req: Request, res: Response) => {
     });
   }
 }
+
+export const getAllTodos = async (req: Request, res: Response) => {
+  try {
+    const { user_id } = req.query;
+
+    const existing_todos = await TodoModel.find({ user_id });
+
+    if (!existing_todos.length) return res.status(400).json({
+      message: "There is no todo assigned to this user"
+    });
+
+    return res.status(200).json({
+      message: "All todos are fetched successfully",
+      all_todos: existing_todos
+    });
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({
+      message: "Internal server error"
+    });
+  }
+}
